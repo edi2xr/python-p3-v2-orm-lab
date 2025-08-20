@@ -1,5 +1,7 @@
-# lib/config.py
-import sqlite3
+from sqlalchemy import create_engine
+from sqlalchemy.orm import declarative_base, sessionmaker
 
-CONN = sqlite3.connect('company.db')
-CURSOR = CONN.cursor()
+# Create engine and base
+engine = create_engine("sqlite:///company.db", echo=False)
+Base = declarative_base()
+Session = sessionmaker(bind=engine)
